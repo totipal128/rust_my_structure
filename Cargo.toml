@@ -1,10 +1,11 @@
 [package]
-name = "my_first_project_routing_1"
+name = "rust_my_structure"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-actix-web = "4"
+actix-web = "4.11"
 env_logger = "0.11"
+once_cell = "1.20"
 dotenvy = "0.15"
 serde = { version = "1.0", features = ["derive"] }

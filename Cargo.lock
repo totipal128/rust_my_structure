@@ -918,16 +918,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "my_first_project_routing_1"
-version = "0.1.0"
-dependencies = [
- "actix-web",
- "dotenvy",
- "env_logger",
- "serde",
-]
-
-[[package]]
 name = "num-conv"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1136,6 +1126,17 @@ name = "regex-syntax"
 version = "0.8.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "caf4aa5b0f434c91fe5c7f1ecb6a5ece2130b02ad2a590589dda5146df959001"
+
+[[package]]
+name = "rust_my_structure"
+version = "0.1.0"
+dependencies = [
+ "actix-web",
+ "dotenvy",
+ "env_logger",
+ "once_cell",
+ "serde",
+]
 
 [[package]]
 name = "rustc-demangle"
