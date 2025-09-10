@@ -1,0 +1,10 @@
+[package]
+name = "my_first_project_routing_1"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+actix-web = "4"
+env_logger = "0.11"
+dotenvy = "0.15"
+serde = { version = "1.0", features = ["derive"] }
