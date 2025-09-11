@@ -1,6 +1,5 @@
 #![allow(dead_code)]
 
-pub mod responses;
 pub mod route_logger;
 
 use std::sync::Mutex;

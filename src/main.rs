@@ -4,30 +4,35 @@
 use actix_web::{middleware::Logger, web, App, HttpResponse, HttpServer};
 use env_logger::Env;
 use dotenvy::dotenv;
+use scopeguard::defer;
 use std::{env};
-use crate::helpers::responses::responses::inspect;
+use crate::{base::databases::DB_CONNECTION, base::responses::inspect};
 use helpers::route_logger::ROUTES;
 
 // get module rust
+
+mod schema;
 mod helpers;
 mod base;
 mod app;
 
 async fn index () -> HttpResponse{
     let data = "isi data";
-    let resp = helpers::responses::responses::ResponseData::new(
+    let resp = base::responses::ResponseData::new(
         "Welkowe first project rust".to_string(),
         200,
         data,
     );
 
     // get response enum
-    inspect(helpers::responses::responses::NewResponseData::BadRequest(resp))
+    inspect(base::responses::NewResponseData::Success(resp))
 }
 
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    let conn = DB_CONNECTION.lock().unwrap();
+    defer!(drop(conn););
     // load env
     dotenv().ok();
 

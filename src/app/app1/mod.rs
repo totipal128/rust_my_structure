@@ -3,6 +3,7 @@ use actix_web::{ web::{self}};
 use crate::{helpers::route_logger::RouterPrintExt};
 
 pub mod controller;
+pub mod models;
 
 pub fn init(cfg:&mut web::ServiceConfig){
     let base = "/app1";
