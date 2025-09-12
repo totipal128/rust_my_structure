@@ -49,6 +49,7 @@ diesel setup
 ```
 Ini akan membuat folder migrations/ dan menyiapkan database di Docker PostgreSQL sesuai DATABASE_URL.
 
+### Table
 - Create Table ke databases
 ```
 diesel migration generate create_posts
@@ -65,15 +66,15 @@ CREATE TABLE posts (
 ```
 - menamabahkan kolom pada table
 ```
-diesel migration generate add_age_to_users
+diesel migration generate add_type_to_posts
 ```
 `up.sql`
 ```
-ALTER TABLE users ADD COLUMN type INT;
+ALTER TABLE posts ADD COLUMN type INT;
 ```
 `down.sql`
 ```
-ALTER TABLE users DROP COLUMN type;
+ALTER TABLE posts DROP COLUMN type;
 ```
 
 - Revert migration lama:
