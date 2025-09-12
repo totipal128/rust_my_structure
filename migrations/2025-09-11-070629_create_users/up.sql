@@ -3,6 +3,7 @@ CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,       -- ✅ primary key
     name VARCHAR NOT NULL,
     address VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
     is_agent BOOLEAN NOT NULL DEFAULT false
 );
 

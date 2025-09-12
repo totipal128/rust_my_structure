@@ -62,8 +62,20 @@ CREATE TABLE posts (
   body TEXT NOT NULL,
   published BOOLEAN NOT NULL DEFAULT FALSE
 )
-
 ```
+- menamabahkan kolom pada table
+```
+diesel migration generate add_age_to_users
+```
+`up.sql`
+```
+ALTER TABLE users ADD COLUMN type INT;
+```
+`down.sql`
+```
+ALTER TABLE users DROP COLUMN type;
+```
+
 - Revert migration lama:
 ```
 diesel migration revert

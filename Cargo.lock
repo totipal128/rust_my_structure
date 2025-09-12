@@ -1268,6 +1268,7 @@ dependencies = [
  "once_cell",
  "scopeguard",
  "serde",
+ "serde_json",
 ]
 
 [[package]]

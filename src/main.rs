@@ -4,7 +4,6 @@
 use actix_web::{middleware::Logger, web, App, HttpResponse, HttpServer};
 use env_logger::Env;
 use dotenvy::dotenv;
-use scopeguard::defer;
 use std::{env};
 use crate::{base::databases::DB_CONNECTION, base::responses::inspect};
 use helpers::route_logger::ROUTES;
@@ -31,8 +30,8 @@ async fn index () -> HttpResponse{
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let conn = DB_CONNECTION.lock().unwrap();
-    defer!(drop(conn););
+    // let conn = DB_CONNECTION.lock().unwrap();
+    // defer!(drop(conn););
     // load env
     dotenv().ok();
 

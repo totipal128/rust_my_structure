@@ -1,11 +1,12 @@
-use std::{env, sync::Mutex};
+use std::env;
 
-use diesel::{Connection, PgConnection};
+use diesel::{r2d2::{self, ConnectionManager}, PgConnection};
 use dotenvy::dotenv;
 use once_cell::sync::Lazy;
 
+pub type DbPool = r2d2::Pool<ConnectionManager<PgConnection>>;
 
-pub static DB_CONNECTION:Lazy<Mutex<PgConnection>> =Lazy::new(||{
+pub static DB_CONNECTION:Lazy<DbPool> =Lazy::new(||{
     dotenv().ok();
     let user_env = env::var("DB_USER").unwrap_or("user".to_string());
     let pass_env = env::var("DB_PASS").unwrap_or("password".to_string());
@@ -13,7 +14,10 @@ pub static DB_CONNECTION:Lazy<Mutex<PgConnection>> =Lazy::new(||{
     let port_env = env::var("DB_PORT").unwrap_or("5432".to_string());
     let db_env = env::var("DB_NAME").unwrap_or("db".to_string());
     let databases_url = format!("postgres://{}:{}@{}:{}/{}", user_env, pass_env, host_env, port_env, db_env);
-    let conn = PgConnection::establish(&databases_url).expect(&format!("Error connecting to {}", databases_url));
 
-    Mutex::new(conn)
+    
+    let manager = ConnectionManager::<PgConnection>::new(databases_url);
+    r2d2::Pool::builder()
+    .build(manager)
+     .expect("❌ Failed to create pool")
 });
